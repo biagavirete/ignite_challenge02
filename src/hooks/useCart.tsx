@@ -89,7 +89,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     amount,
   }: UpdateProductAmount) => {
     try {
-      if (amount >= 0) {
+      if (amount <= 0) {
         return;
       }
 
@@ -102,7 +102,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       }
 
       const updatedCart = [...cart];
-      const existingProduct = cart.find(product => product.id === productId);
+      const existingProduct = updatedCart.find(product => product.id === productId);
 
       if (existingProduct) {
         existingProduct.amount = amount;
